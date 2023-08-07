@@ -9,13 +9,13 @@ ENV HTTP_PORT=80
 WORKDIR /var/app
 
 # Copy package.json & associated files
-COPY ./package*.json ./
+COPY package*.json ./
 
 # Install dependencies
 RUN npm ci --omit=dev --ignore-scripts
 
 # Copy project files
-COPY ./
+COPY ./ ./
 
 # Run migrations
 CMD ["npm", "run", "migrate:latest"]
