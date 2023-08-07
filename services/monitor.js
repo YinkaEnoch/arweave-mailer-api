@@ -13,6 +13,7 @@ const monitor = async () => {
   const TRACKING_BLOCKS_NUM = 20; // TODO: env
   const { height: currentBlockHeight } = await arweave.blocks.getCurrent();
   let blockHeight = Number(currentBlockHeight) - TRACKING_BLOCKS_NUM;
+  console.log({ blockHeight });
 
   try {
     while (true) {
@@ -53,7 +54,7 @@ const monitor = async () => {
         const senderData = await getUser(sender);
         console.log({ senderData });
 
-        if (senderData) {
+        if (senderData && senderData.length > 0) {
           // Send mail
           await sendMail({
             sender,
@@ -65,9 +66,9 @@ const monitor = async () => {
             transactionTags,
             transactionId: transaction,
             userData: {
-              firstName: senderData.first_name,
-              email: senderData.email,
-              walletAddress: senderData.wallet_address,
+              firstName: senderData[0].first_name,
+              email: senderData[0].email,
+              walletAddress: senderData[0].wallet_address,
             },
           });
         }
@@ -78,8 +79,7 @@ const monitor = async () => {
         }
         console.log({ receiverData });
 
-        if (receiverData) {
-          // Send mail
+        if (receiverData && receiverData.length > 0) {
           await sendMail({
             sender,
             receiver,
@@ -90,9 +90,9 @@ const monitor = async () => {
             transactionTags,
             transactionId: transaction,
             userData: {
-              firstName: receiverData.first_name,
-              email: receiverData.email,
-              walletAddress: receiverData.wallet_address,
+              firstName: receiverData[0].first_name,
+              email: receiverData[0].email,
+              walletAddress: receiverData[0].wallet_address,
             },
           });
         }

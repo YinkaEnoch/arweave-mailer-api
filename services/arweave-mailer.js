@@ -29,10 +29,10 @@ const createSubscription = async (req, res) => {
 
 const getUser = async (walletAddress) => {
   try {
-    const data = await knex
-      .select("first_name", "email", "wallet_address")
-      .from("mail_subscription")
-      .where("wallet_address", walletAddress);
+    const data = await knex.raw(
+      `SELECT first_name, email, wallet_address FROM mail_subscription WHERE wallet_address='${walletAddress}'`
+    );
+
     console.log({ data });
 
     return data[0];
