@@ -36,7 +36,7 @@ const getUser = async (walletAddress) => {
 
     return data[0];
   } catch (err) {
-    res.status(500).json({ error: true, message: err?.message });
+    return err;
   }
 };
 
