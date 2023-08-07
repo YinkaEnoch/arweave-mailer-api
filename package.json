@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "arweave": "^1.14.4",
+    "axios": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "knex": "^2.5.1",
+    "mysql2": "^3.6.0",
+    "resend": "^0.17.2"
+  },
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon index.js",
+    "start": "node index.js",
+    "migrate:make": "knex --cwd knex migrate:make -x js",
+    "migrate:latest": "knex --cwd knex migrate:latest",
+    "migrate:rollback": "knex --cwd knex migrate:rollback"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
