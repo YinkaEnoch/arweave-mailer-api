@@ -9,7 +9,7 @@ const createSubscription = async (req, res) => {
   try {
     const userExists = await getUser(walletAddress);
 
-    if (userExists) {
+    if (userExists && userExists.length > 0) {
       return res
         .status(400)
         .json({ error: true, message: "Wallet address already exists" });
