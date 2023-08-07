@@ -51,6 +51,7 @@ const monitor = async () => {
 
         // Check if sender is a subscriber
         const senderData = await getUser(sender);
+        console.log({ senderData });
 
         if (senderData) {
           // Send mail
@@ -71,7 +72,11 @@ const monitor = async () => {
           });
         }
 
-        const receiverData = receiver ? await getUser(receiver) : null;
+        let receiverData;
+        if (receiver) {
+          receiverData = await getUser(receiver);
+        }
+        console.log({ receiverData });
 
         if (receiverData) {
           // Send mail

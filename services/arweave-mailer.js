@@ -33,6 +33,7 @@ const getUser = async (walletAddress) => {
       .select("first_name", "email", "wallet_address")
       .from("mail_subscription")
       .where("wallet_address", walletAddress);
+    console.log({ data });
 
     return data[0];
   } catch (err) {
