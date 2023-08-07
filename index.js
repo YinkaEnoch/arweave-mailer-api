@@ -26,9 +26,9 @@ app.use((err, req, res) => {
   res.status(500).json({ error: true, message: "Internal server error" });
 });
 
-monitor().catch((e) => {
-  throw e;
-});
+// monitor().catch((e) => {
+//   throw e;
+// });
 
 app.listen(HTTP_PORT, () =>
   console.log(`Application running on port: ${HTTP_PORT} `)
