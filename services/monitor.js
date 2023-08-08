@@ -1,3 +1,4 @@
+require("dotenv").config();
 const Arweave = require("arweave");
 const { getUser, sendMail } = require("./arweave-mailer.js");
 
@@ -10,7 +11,7 @@ const monitor = async () => {
   });
 
   const MEGA_BYTE = 1024 * 1024;
-  const TRACKING_BLOCKS_NUM = 20; // TODO: env
+  const TRACKING_BLOCKS_NUM = process.env.TRACKING_BLOCKS_NUM;
   const { height: currentBlockHeight } = await arweave.blocks.getCurrent();
   let blockHeight = Number(currentBlockHeight) - TRACKING_BLOCKS_NUM;
   console.log({ blockHeight });
